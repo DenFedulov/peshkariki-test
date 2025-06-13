@@ -1,0 +1,64 @@
+<?php
+
+namespace Dfed\PeshkarikiTest\Animal;
+
+use Dfed\PeshkarikiTest\Animal\Behavior\Poisonous;
+use Dfed\PeshkarikiTest\Animal\Behavior\ReproductionStrategy;
+use Dfed\PeshkarikiTest\Animal\Classification\Reptile;
+use Dfed\PeshkarikiTest\Animal\Strategy\FemaleOviReproductionStrategy;
+use Dfed\PeshkarikiTest\Animal\Strategy\MaleOviReproductionStrategy;
+use Dfed\PeshkarikiTest\Animal\Trait\Poison;
+use Dfed\PeshkarikiTest\Enums\DietType;
+use Dfed\PeshkarikiTest\Enums\SexType;
+
+class Cobra extends Reptile implements Poisonous
+{
+    /**
+     * @param  AnimalOptions $options
+     * @return void
+     */
+    public function __construct(AnimalOptions $options)
+    {
+        parent::__construct($options, new AnimalSpecs(
+            parent::CLASSIFICATION,
+            DietType::CARNIVORE
+        ));
+        switch($options->getSexType()){
+            case SexType::MALE:
+                $this->reproductionStrategy = new MaleOviReproductionStrategy();
+                break;
+            case SexType::FEMALE:
+                $this->reproductionStrategy = new FemaleOviReproductionStrategy();
+                break;
+            default:
+                throw new \InvalidArgumentException('Inknown sex type for ' . self::class . ': ' . $options->getSexType());  
+                break;
+        }
+    }
+
+    public function advanceAge(): void
+    {
+        // TODO
+    }
+
+    public function decreaseSatiation(): void
+    {
+        // TODO
+    }
+
+    public function eat(): void
+    {
+        // TODO
+    }
+
+    public function move(): void
+    {
+        // TODO
+    }
+
+    public function reproduce(): void
+    {
+        $this->reproductionStrategy->reproduce();
+    }
+    use Poison;
+}

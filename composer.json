@@ -1,0 +1,15 @@
+{
+    "name": "dfed/peshkariki-test",
+    "autoload": {
+        "psr-4": {
+            "Dfed\\PeshkarikiTest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "denis fedulov",
+            "email": "den.fedulov.1999@mail.ru"
+        }
+    ],
+    "require": {}
+}

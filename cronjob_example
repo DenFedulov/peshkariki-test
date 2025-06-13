@@ -1,0 +1,1 @@
+0 12 * * * /usr/bin/php /path/to/your/index.php >> /var/log/php_script.log 2>&1
